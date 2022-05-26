@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -8,27 +8,19 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.1.RELEASE</version>
-
-         <!-- lookup parent from repository -->
+        <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.geekbrains</groupId>
-    <artifactId>spring2-16.05.22</artifactId>
+    <groupId>ru.geekbrains</groupId>
+    <artifactId>lesson-three</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>spring2-16.05.22</name>
-    <description>Demo project for Spring Boot</description>
-    <packaging>pom</packaging>
+    <name>lesson-three</name>
+    <description>Demo project for Spring Boot AOP</description>
 
     <properties>
         <java.version>1.8</java.version>
-
     </properties>
 
-    <!--<parent>-->
-    <!--<groupId>org.springframework.boot</groupId>-->
-    <!--<artifactId>spring-boot-starter-parent</artifactId>-->
-    <!--<version>1.5.8.RELEASE</version>-->
-    <!--</parent>-->
 
     <dependencies>
         <dependency>
@@ -56,11 +48,6 @@
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
         </dependency>
-        <!--<dependency>-->
-        <!--<groupId>org.springframework.boot</groupId>-->
-        <!--<artifactId>spring-boot-starter-actuator</artifactId>-->
-        <!--</dependency>-->
-
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
@@ -80,7 +67,7 @@
         <dependency>
             <groupId>com.paypal.sdk</groupId>
             <artifactId>rest-api-sdk</artifactId>
-            <version>LATEST</version>
+            <version>1.14.0</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -111,14 +98,6 @@
             <version>2.2.0</version>
             <scope>test</scope>
         </dependency>
-
-        <dependency>
-            <groupId>org.sql2o</groupId>
-            <artifactId>sql2o</artifactId>
-            <version>1.6.0</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp -->
-
         <dependency>
             <groupId>commons-dbcp</groupId>
             <artifactId>commons-dbcp</artifactId>
@@ -204,12 +183,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.springframework/spring-aop -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-aop</artifactId>
-            <version>5.1.2.RELEASE</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
         <dependency>
             <groupId>org.aspectj</groupId>
@@ -222,26 +195,19 @@
 
     <build>
         <plugins>
-
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
 
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <version>5.2.1</version>
                 <configuration>
-                    <configFile>../spring2-16.05.22/lesson-one/src/main/resources/flyway.conf</configFile>
+                    <configFile>../lesson-three/src/main/resources/flyway.conf</configFile>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-    <modules>
-        <module>lesson-one</module>
-        <module>lesson-two</module>
-        <module>lesson-three</module>
-    </modules>
 </project>
