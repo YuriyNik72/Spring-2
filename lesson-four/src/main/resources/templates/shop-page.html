@@ -17,11 +17,16 @@
 
 <div class="container">
     <br>
-        <input id="resultInput" type="text" size="30" placeholder="Цена">
-        <button type="submit" id="connect" class="btn btn-primary" onclick="connect();">Connect</button>
+<!--        <input id="resultInput" type="text" size="30" placeholder="Цена">-->
+<!--        <button type="submit" id="connect" class="btn btn-primary" onclick="connect();">Connect</button>-->
+    <div>
+
+        <br>Корзина:
+        <input id="resultInput" type="text" size="10" disabled> руб.
+        <button id="sendMessage" onclick="sendMessage();">Сумма заказа</button>
+    </div>
 
         <h1 th:text="Фильтры" />
-
             <form th:action="@{/shop}" method="get">
                 <input hidden th:value="${page}" th:name="page">
                 <input th:value="${word != null} ? ${word}" th:name="word" type="text" placeholder="Название">
@@ -56,7 +61,7 @@
                 <td th:text="${product.title}"/>
                 <td th:text="${product.price}"/>
                 <td>
-                    <a th:href="@{'/shop/cart/add/' + ${product.id}}" class="btn btn-primary">Добавить в корзину</a>
+                    <a th:href="@{'/shop/cart/add/' + ${product.id}}" class="btn btn-primary" onclick="sendMessage();">Добавить в корзину</a>
                 </td>
             </tr>
             </tbody>
