@@ -31,5 +31,6 @@
         <module>lesson-two</module>
         <module>lesson-three</module>
         <module>lesson-four</module>
+        <module>lesson-five</module>
     </modules>
 </project>
