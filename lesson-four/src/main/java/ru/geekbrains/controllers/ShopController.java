@@ -1,6 +1,7 @@
 package ru.geekbrains.controllers;
 
 
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import ru.geekbrains.entites.Order;
 import ru.geekbrains.entites.Product;
 import ru.geekbrains.entites.User;
@@ -33,8 +34,10 @@ public class ShopController {
     private ProductService productService;
     private ShoppingCartService shoppingCartService;
     private DeliveryAddressService deliverAddressService;
+    private SimpMessagingTemplate template;
 
     private Logger logger = Logger.getLogger(String.valueOf(ShopController.class));
+
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -64,6 +67,11 @@ public class ShopController {
     @Autowired
     public void setMailService(MailService mailService) {
         this.mailService = mailService;
+    }
+
+    @Autowired
+    public void setTemplate(SimpMessagingTemplate template){
+        this.template = template;
     }
 
     @GetMapping
@@ -101,7 +109,6 @@ public class ShopController {
         model.addAttribute("min", min);
         model.addAttribute("max", max);
         model.addAttribute("word", word);
-
 
         return "shop-page";
     }
