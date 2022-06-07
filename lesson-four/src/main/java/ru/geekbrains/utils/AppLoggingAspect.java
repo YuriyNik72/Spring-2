@@ -4,6 +4,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.entites.Product;
@@ -21,8 +22,14 @@ public class AppLoggingAspect {
 
     private ShoppingCart shoppingCart;
     private Map<String, Long> services = Collections.synchronizedMap(new HashMap<>());
+
+    private final HttpSession httpSession;
+    private SimpMessagingTemplate template;
     @Autowired
-    private HttpSession httpSession;
+    public AppLoggingAspect(HttpSession httpSession, SimpMessagingTemplate template){
+        this.httpSession = httpSession;
+        this.template = template;
+    }
 
         @After("execution(* ru.geekbrains..*(..,ru.geekbrains.entites.Product+,..))")    // pointcut expression
     public void aopSimpleMethod(JoinPoint joinPoint) {
@@ -46,7 +53,7 @@ public class AppLoggingAspect {
         logger.info("Товар удален из корзины");
     }
     @After(value="aopSimpleMethodAfterInCart() || aopLoggingRemoveProductFromCart()")
-    public void aopRecalculateCart(){
+    public void aopRecalculateCart() throws InterruptedException{
         Logger logger = Logger.getLogger(String.valueOf(ShoppingCartService.class));
         ShoppingCart cart = (ShoppingCart) httpSession.getAttribute("cart");
         logger.info("Cart total cost: " + cart.getTotalCost());
