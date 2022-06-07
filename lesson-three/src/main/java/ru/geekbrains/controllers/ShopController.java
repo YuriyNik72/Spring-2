@@ -1,5 +1,6 @@
 package ru.geekbrains.controllers;
 
+
 import ru.geekbrains.entites.Order;
 import ru.geekbrains.entites.Product;
 import ru.geekbrains.entites.User;
@@ -11,11 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.services.*;
+import ru.geekbrains.utils.ShoppingCart;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Controller
 @RequestMapping("/shop")
@@ -29,6 +33,8 @@ public class ShopController {
     private ProductService productService;
     private ShoppingCartService shoppingCartService;
     private DeliveryAddressService deliverAddressService;
+
+    private Logger logger = Logger.getLogger(String.valueOf(ShopController.class));
 
     @Autowired
     public void setProductService(ProductService productService) {
@@ -152,5 +158,15 @@ public class ShopController {
         mailService.sendOrderMail(confirmedOrder);
         model.addAttribute("order", confirmedOrder);
         return "order-result";
+    }
+
+    @GetMapping("/order/fill")
+    public String orderFill(HttpSession httpSession, Model model, Principal principal){
+        User user = userService.findByUserName(principal.getName());
+        ShoppingCart cart = shoppingCartService.getCurrentCart(httpSession);
+        model.addAttribute("cart", cart);
+        model.addAttribute("order", new Order());
+        model.addAttribute("addresses", deliverAddressService.getUserAddresses(user.getId()));
+        return "order-form";
     }
 }
