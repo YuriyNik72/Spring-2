@@ -34,5 +34,6 @@
         <module>lesson-five</module>
 		<module>lesson-six</module>
         <module>lesson-seven</module>
+        <module>lesson-eight</module>
     </modules>
 </project>
