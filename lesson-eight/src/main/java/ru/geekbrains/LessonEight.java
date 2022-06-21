@@ -1,16 +1,13 @@
-package com.geekbrains.geekmarketwinter;
+package ru.geekbrains;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan
-@EnableAutoConfiguration
-public class LessonTwo {
+//@EnableWebSocketMessageBroker
+public class LessonEight {
 	public static void main(String[] args) {
-		SpringApplication.run(LessonTwo.class, args);
+		SpringApplication.run(LessonEight.class, args);
 	}
 
 //	private TestRepository repository;
