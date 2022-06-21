@@ -56,6 +56,12 @@
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
         <dependency>
+
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+        <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
             <version>3.0.4.RELEASE</version>
@@ -177,7 +183,6 @@
             <artifactId>validation-api</artifactId>
         </dependency>
     </dependencies>
-
 
 
     <build>

@@ -14,7 +14,7 @@ import java.util.Locale;
 @Configuration
 @EnableAspectJAutoProxy
 @PropertySource("classpath:private.properties")
-@ComponentScan("com.geekbrains.geekmarketwinter")
+@ComponentScan("ru.geekbrains")
 public class AppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         if (!registry.hasMappingForPattern("/images/**")) {
