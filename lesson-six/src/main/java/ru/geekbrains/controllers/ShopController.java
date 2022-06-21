@@ -1,7 +1,10 @@
 package ru.geekbrains.controllers;
 
 
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import ru.geekbrains.entites.CustomPage;
 import ru.geekbrains.entites.Order;
 import ru.geekbrains.entites.Product;
 import ru.geekbrains.entites.User;
@@ -36,7 +39,14 @@ public class ShopController {
     private DeliveryAddressService deliverAddressService;
     private SimpMessagingTemplate template;
 
+    private ProductClient productClient;
+
     private Logger logger = Logger.getLogger(String.valueOf(ShopController.class));
+
+    @Autowired
+    public void setProductClient(ProductClient productClient){
+        this.productClient = productClient;
+    }
 
 
     @Autowired
@@ -98,7 +108,9 @@ public class ShopController {
             filters.append("&max=" + max);
         }
 
-        Page<Product> products = productService.getProductsWithPagingAndFiltering(currentPage, PAGE_SIZE, spec);
+//        Page<Product> products = productService.getProductsWithPagingAndFiltering(currentPage, PAGE_SIZE, spec);
+        CustomPage<Product> productsList = productClient.getProductsWithPagingAndFiltering(currentPage, PAGE_SIZE, word, min, max);
+        Page<Product> products = new PageImpl<>(productsList.getList(), PageRequest.of(currentPage,PAGE_SIZE), productsList.getTotalCount());
 
         model.addAttribute("products", products.getContent());
         model.addAttribute("page", currentPage);

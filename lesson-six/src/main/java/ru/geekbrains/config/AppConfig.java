@@ -1,7 +1,6 @@
 package ru.geekbrains.config;
 
 import org.springframework.context.annotation.*;
-import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -14,7 +13,7 @@ import java.util.Locale;
 @Configuration
 @EnableAspectJAutoProxy
 @PropertySource("classpath:private.properties")
-@ComponentScan("com.geekbrains.geekmarketwinter")
+@ComponentScan("ru.geekbrains")
 public class AppConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         if (!registry.hasMappingForPattern("/images/**")) {
