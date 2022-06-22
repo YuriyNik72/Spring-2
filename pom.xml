@@ -35,5 +35,6 @@
 		<module>lesson-six</module>
         <module>lesson-seven</module>
         <module>lesson-eight</module>
+        <module>spring-market</module>
     </modules>
 </project>
