@@ -34,8 +34,3 @@
  
 Продолжить работу со spring cloud, выделить сервис для получения списка товаров
 
-Урок №7
-
-Сделать unit-test для методов cart service
-Сделать spring test для cart controller
-
